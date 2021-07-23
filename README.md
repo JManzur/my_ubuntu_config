@@ -5,7 +5,8 @@
 
 | Environment | Application | Version  |
 | ----------------- |-----------|---------|
-| WSL2 Ubuntu 20.04 | Terraform | v1.0.0  |
+| LXC Ubuntu 20.04 | Git |  2.25.1  |
+| LXC Ubuntu 20.04 | Ansible |  2.9.6  |
 
 ## Initialization How-To:
 
