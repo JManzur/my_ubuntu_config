@@ -24,7 +24,7 @@
       dest: ./zsh-installer.sh
 
   - name: Execute the zsh-installer.sh
-    shell: /tmp/zsh-installer.sh
+    shell: ./zsh-installer.sh
 
   - name: Remove the zsh-installer.sh
     file:
