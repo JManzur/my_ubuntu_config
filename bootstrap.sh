@@ -7,6 +7,7 @@ YELLOW="\e[33m"
 BLUE="\e[34m"
 ENDCOLOR="\e[0m"
 
+#Progress bar function:
 progress_bar () {
     echo ""
     echo -e "${BLUE}INFO:${ENDCOLOR} ${GREEN}Starting verification: ${ENDCOLOR} \n"
@@ -23,6 +24,7 @@ progress_bar () {
     echo -e '\n'
 }
 
+#Check installation function:
 check_if_installed () {
     if command -v $1 > /dev/null
         then
@@ -32,7 +34,7 @@ check_if_installed () {
     fi
 }
 
-
+#Actual installation procedure:
 if [[ $EUID -ne 0 ]]
     then
         echo -e "${RED}ERROR:${ENDCOLOR} This script must be run as root" 
