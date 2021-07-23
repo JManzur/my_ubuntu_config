@@ -10,17 +10,29 @@
 
 ## Initialization How-To:
 
-Download the bootstrap.sh script using wget, make it executable, and run it.
+Download the [bootstrap.sh](https://raw.githubusercontent.com/JManzur/my_ubuntu_config/main/bootstrap.sh) script using wget, make it executable, and run it.
 
 ```bash
 wget https://raw.githubusercontent.com/JManzur/my_ubuntu_config/main/bootstrap.sh
 chmod +x bootstrap.sh
-./bootstrap.sh
+sudo ./bootstrap.sh
 ```
 
 This script will install the latest updates, git and ansible.
 
 ## Deployment How-To:
+
+Clone the repository and cd into it. 
+
+```bash
+git clone https://github.com/JManzur/my_ubuntu_config.git
+cd my_ubuntu_config
+```
+Pull the repository and run it:
+
+```bash
+sudo ansible-pull -U https://github.com/JManzur/my_ubuntu_config.git
+```
 
 ## Debugging / Troubleshooting:
 
@@ -37,4 +49,4 @@ This script will install the latest updates, git and ansible.
 
 ## Documentation
 
-- [EXAMPLE](URL)
+- [Ansible-Pull Documentation](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html)
