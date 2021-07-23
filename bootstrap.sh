@@ -23,6 +23,15 @@ progress_bar () {
     echo -e '\n'
 }
 
+check_if_installed () {
+    if command -v $1 > /dev/null
+        then
+            echo -e "${BLUE}INFO:${ENDCOLOR} $1 installed OK"
+        else
+            echo -e "${RED}NOT OK:${ENDCOLOR} $1 not installed"
+    fi
+}
+
 
 if [[ $EUID -ne 0 ]]
     then
@@ -36,16 +45,6 @@ if [[ $EUID -ne 0 ]]
         echo -e "${GREEN}Installing Ansible${ENDCOLOR} \n"
         apt install ansible -y
         progress_bar
-        if command -v ansible > /dev/null
-            then
-                echo -e "${BLUE}INFO:${ENDCOLOR} Ansible installed OK"
-            else
-                echo -e "${RED}NOT OK:${ENDCOLOR} Ansible not installed"
-        fi
-        if command -v git > /dev/null
-            then
-                echo -e "${BLUE}INFO:${ENDCOLOR} Git installed OK"
-            else
-                echo -e "${RED}NOT OK:${ENDCOLOR} Git not installed"
-        fi
+        check_if_installed "git"
+        check_if_installed "ansible"
 fi
