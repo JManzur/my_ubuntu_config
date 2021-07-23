@@ -33,7 +33,7 @@ sudo ansible-pull -U https://github.com/JManzur/my_ubuntu_config.git
 #### **Debugging Tip #1**: 
 
 #### **Known issue #1**: 
- - **Issue**: 
+- **Issue**: You get a bunch of "[WARNING]" messages when running the playbook.
 - **Cause**: 
 - **Solution**: 
 

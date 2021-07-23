@@ -7,6 +7,7 @@
     apt:
       update_cache: yes
       upgrade: 'yes'
+      changed_when: False
 
   tasks:
   - name: Install packages
@@ -18,7 +19,7 @@
         - zsh
         - net-tools
 
-  - name: Check if oh-my-zsh exists
+  - name: Check if Oh-My-ZSH exists
     stat:
       path: ~/.oh-my-zsh
     register: stat_result
