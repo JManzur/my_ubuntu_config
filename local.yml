@@ -18,16 +18,22 @@
         - zsh
         - net-tools
         
-  - name: Download zsh installer
-    get_url:
+  - name: Download Oh-My-ZSH installer
+    ansible.builtin.get_url:
       url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
       dest: /opt/zsh-installer.sh
       mode: '0777'
 
   - name: Execute the zsh-installer.sh
-    shell: /opt/zsh-installer.sh
+    ansible.builtin.shell: /opt/zsh-installer.sh
 
   - name: Remove the zsh-installer.sh
-    file:
+    ansible.builtin.file:
       path: /opt/zsh-installer.sh 
       state: absent
+
+  - name: Change Oh-My-ZSH theme
+    ansible.builtin.lineinfile:
+      path: ~/.zshrc
+      regexp: '^ZSH_THEME='
+      line: ZSH_THEME="dst"
