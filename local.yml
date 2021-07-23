@@ -2,8 +2,7 @@
 - hosts: localhost
   connection: local
   become: true
-
-  tasks:
+  pre_tasks:
   - name: Update and Upgrade
     apt:
       update_cache: yes
