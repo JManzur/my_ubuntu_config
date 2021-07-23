@@ -7,7 +7,6 @@
     apt:
       update_cache: yes
       upgrade: 'yes'
-      changed_when: False
 
   tasks:
   - name: Install packages
