@@ -19,13 +19,13 @@
         - net-tools
         
   - name: Download Oh-My-ZSH installer
-    ansible.builtin.get_url:
+    get_url:
       url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
       dest: /opt/zsh-installer.sh
       mode: '0777'
-
+      
   - name: Execute the zsh-installer.sh
-    ansible.builtin.shell: /opt/zsh-installer.sh
+    shell: /opt/zsh-installer.sh
 
   - name: Remove the zsh-installer.sh
     ansible.builtin.file:
