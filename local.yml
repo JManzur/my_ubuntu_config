@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: all
   connection: local
   become: true
   pre_tasks:
@@ -7,7 +7,6 @@
     apt:
       update_cache: yes
       upgrade: 'yes'
-      changed_when: False
 
   tasks:
   - name: Install packages
