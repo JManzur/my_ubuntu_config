@@ -9,12 +9,15 @@
 
 ## Initialization How-To:
 
-First dowload the bootstrap.sh script using wget
+Download the bootstrap.sh script using wget, make it executable, and run it.
 
 ```bash
-wget
-
+wget https://raw.githubusercontent.com/JManzur/my_ubuntu_config/main/bootstrap.sh
+chmod +x bootstrap.sh
+./bootstrap.sh
 ```
+
+This script will install the latest updates, git and ansible.
 
 ## Deployment How-To:
 
