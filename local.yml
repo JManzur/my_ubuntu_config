@@ -4,9 +4,17 @@
   become: true
 
   tasks:
-  - name: install packages
+  - name: Update and Upgrade
+    apt:
+      update_cache: yes
+      upgrade: 'yes'
+
+  tasks:
+  - name: Install packages
     package:
       name:
         - htop
         - vim
         - curl
+        - zsh
+        - net-tools

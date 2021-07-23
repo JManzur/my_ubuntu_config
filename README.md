@@ -22,12 +22,6 @@ This script will install the latest updates, git and ansible.
 
 ## Deployment How-To:
 
-Clone the repository and cd into it. 
-
-```bash
-git clone https://github.com/JManzur/my_ubuntu_config.git
-cd my_ubuntu_config
-```
 Pull the repository and run it:
 
 ```bash
