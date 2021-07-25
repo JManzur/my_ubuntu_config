@@ -57,9 +57,9 @@
     blockinfile:
       path: ~/.zshrc
       block: |
-      #Alias to add, commit and push
-      function acp() {
-        git add .
-        git commit -m "$1"
-        git push
-      }
+        #Alias to add, commit and push
+        function acp() {
+          git add .
+          git commit -m "$1"
+          git push
+        }
