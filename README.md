@@ -1,4 +1,3 @@
-
 # My Ubuntu - Ansible-Pull config
 
 ## Tested with: 
@@ -26,6 +25,18 @@ Pull the repository and run it:
 
 ```bash
 sudo ansible-pull -U https://github.com/JManzur/my_ubuntu_config.git
+```
+
+:bulb: **TIP #1**: If you just want to run it, when the repository changes use the "-o" flag as follows:
+
+```bash
+sudo ansible-pull -o -U https://github.com/JManzur/my_ubuntu_config.git
+```
+
+:bulb: **TIP #2**: If you want to automate a step further, you can add a crontab job to run an "ansible-pull" every 10 minutes using the "-o" flag, so it only applies when you make changes to the repository.
+
+```bash
+*/10 * * * * /usr/bin/ansible-pull -o -U https://github.com/JManzur/my_ubuntu_config.git > /dev/null
 ```
 
 ## Debugging / Troubleshooting:
