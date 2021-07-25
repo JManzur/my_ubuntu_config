@@ -34,8 +34,8 @@ sudo ansible-pull -U https://github.com/JManzur/my_ubuntu_config.git
 
 #### **Known issue #1**: 
 - **Issue**: You get a bunch of "[WARNING]" messages when running the playbook.
-- **Cause**: 
-- **Solution**: 
+- **Cause**: This is a normal behavior form ansible-pull, the warning is about the host been declared as "localhost" instead of using a FQDN.
+- **Solution**: You can ignore it or try to execute the command as follow: ```ansible-pull -i "$HOSTNAME" -U https://github.com/JManzur/my_ubuntu_config.git```
 
 ## Author
 
