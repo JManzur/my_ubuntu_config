@@ -17,6 +17,7 @@
         - curl
         - zsh
         - net-tools
+        - sshpass
 
   - name: Check if Oh-My-ZSH exists
     stat:
