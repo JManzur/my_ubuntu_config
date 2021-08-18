@@ -22,7 +22,6 @@
         - fail2ban
         - telnet
         - whois
-        - sshpass
 
   - name: Check if Oh-My-ZSH exists
     stat:
