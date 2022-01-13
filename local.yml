@@ -19,7 +19,6 @@
         - net-tools
         - sshpass
         - dos2unix
-        - fail2ban
         - telnet
         - whois
         - tree
@@ -70,10 +69,3 @@
           git commit -m "$1"
           git push
         }
-  
-  - name: Config fail2ban SSHD Jail
-    ansible.builtin.lineinfile:
-      path: /etc/fail2ban/jail.conf
-      insertafter: '^[sshd]'
-      line: 'bantime = 86400'
-      state: present
