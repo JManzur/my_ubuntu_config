@@ -23,6 +23,7 @@
         - telnet
         - whois
         - tree
+        - neofetch
 
   - name: Check if Oh-My-ZSH exists
     stat:
