@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Color definitios:
+#Color definition:
 RED="\e[31m"
 GREEN="\e[32m"
 YELLOW="\e[33m"

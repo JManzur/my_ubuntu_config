@@ -24,7 +24,7 @@ This script will install the latest updates, git and ansible.
 Pull the repository and run it:
 
 ```bash
-sudo ansible-pull -U https://github.com/JManzur/my_ubuntu_config.git
+sudo ANSIBLE_LOCALHOST_WARNING=false ansible-pull -U https://github.com/JManzur/my_ubuntu_config.git
 ```
 
 :bulb: **TIP #1**: If you just want to run it, when the repository changes use the "-o" flag as follows:
