@@ -23,6 +23,9 @@
         - whois
         - tree
         - neofetch
+        - git
+        - ansible
+        - terraform
 
   - name: Check if Oh-My-ZSH exists
     stat:
