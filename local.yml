@@ -27,6 +27,7 @@
         - ansible
         - terraform
         - jq
+        - pass
 
   - name: Check if Oh-My-ZSH exists
     stat:
