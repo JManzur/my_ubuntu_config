@@ -28,6 +28,7 @@
         - terraform
         - jq
         - pass
+        - gnupg2
 
   - name: Check if Oh-My-ZSH exists
     stat:
