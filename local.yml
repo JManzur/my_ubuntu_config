@@ -12,6 +12,8 @@
   - name: Install packages
     package:
       name:
+        - gnupg
+        - software-properties-common
         - htop
         - vim
         - curl
@@ -29,6 +31,8 @@
         - jq
         - pass
         - gnupg2
+        - python-pip
+        - silversearcher-ag
 
   - name: Check if Oh-My-ZSH exists
     stat:
@@ -82,3 +86,17 @@
           git commit -m "$1"
           git push
         }
+
+  - name: Add the HashiCorp GPG key.
+    apt_key:
+      url: https://apt.releases.hashicorp.com/gpg
+      state: present
+
+  - name: Add the official HashiCorp Linux repository.
+    ansible.builtin.apt_repository:
+      repo: deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main
+      state: present
+
+  - name: Update to add the repository, and install the Terraform CLI.
+    ansible.builtin.command: apt-get update && sudo apt-get install terraform -y
+    register: terrafor_install
