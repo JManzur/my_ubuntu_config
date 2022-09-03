@@ -97,5 +97,5 @@
       state: present
 
   - name: Update to add the repository, and install the Terraform CLI.
-    ansible.builtin.command: apt-get update && sudo apt-get install terraform -y
+    shell: apt-get update && sudo apt-get install terraform -y
     register: terrafor_install
