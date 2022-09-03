@@ -30,7 +30,6 @@
         - jq
         - pass
         - gnupg2
-        - python-pip
         - silversearcher-ag
 
   - name: Check if Oh-My-ZSH exists
