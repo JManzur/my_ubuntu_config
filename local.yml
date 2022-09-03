@@ -27,7 +27,6 @@
         - neofetch
         - git
         - ansible
-        - terraform
         - jq
         - pass
         - gnupg2
