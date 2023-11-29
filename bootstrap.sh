@@ -24,7 +24,7 @@ progress_bar () {
     echo -e '\n'
 }
 
-#Check installation function:
+# Check if pre-requisites are installed:
 check_if_installed () {
     if command -v $1 > /dev/null
         then
@@ -34,12 +34,20 @@ check_if_installed () {
     fi
 }
 
+# Run Ansible Pull:
 run_ansible_pull () {
     echo -e "${GREEN}Running Ansible Pull${ENDCOLOR} \n"
     sudo ansible-pull -U https://github.com/JManzur/my_ubuntu_config.git
 }
 
-#Actual installation procedure:
+# Install QEMU Agent:
+install_qemu_agent () {
+    echo -e "${GREEN}Installing QEMU Agent${ENDCOLOR} \n"
+    sudo apt install qemu-guest-agent -y
+    sudo systemctl start qemu-guest-agent
+    sudo systemctl enable qemu-guest-agent
+}
+
 if [[ $EUID -ne 0 ]]
     then
         echo -e "${RED}ERROR:${ENDCOLOR} This script must be run as root" 
@@ -55,4 +63,12 @@ if [[ $EUID -ne 0 ]]
         check_if_installed "git"
         check_if_installed "ansible"
         run_ansible_pull
+        read -p "Do you want to install QEMU Agent? (y/n): " -n 1 -r
+        echo ""
+        if [[ $REPLY =~ ^[Yy]$ ]]
+            then
+                install_qemu_agent
+            else
+                echo -e "${BLUE}INFO:${ENDCOLOR} QEMU Agent not installed"
+        fi
 fi

@@ -31,6 +31,21 @@
         - gnupg2
         - silversearcher-ag
 
-  - name: Install Oh-My-Bash
-    shell: |
-      bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
+  - name: Check if Oh My Bash is installed
+    stat:
+      path: "~/.oh-my-bash"
+    register: oh_my_bash
+
+  - name: Install Oh My Bash for all users
+    hosts: all
+    vars:
+      users:
+        - jmanzur
+        - root
+    tasks:
+      - name: Install Oh My Bash for each user
+        become: yes
+        become_user: "{{ item }}"
+        shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
+        loop: "{{ users }}"
+        when: not oh_my_bash.stat.exists
