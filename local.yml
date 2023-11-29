@@ -37,7 +37,6 @@
     register: oh_my_bash
 
   - name: Install Oh My Bash for all users
-    hosts: all
     vars:
       users:
         - jmanzur
