@@ -2,7 +2,6 @@
 - hosts: localhost
   connection: local
   become: true
-  ansible_user: "jmanzur"
   pre_tasks:
   - name: Update and Upgrade
     apt:
@@ -36,7 +35,7 @@
     shell: |
       bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
     args:
-      creates: /home/{{ ssh_user }}/.oh-my-bash
+      creates: /home/jmanzur/.oh-my-bash
   
   - name: Add the HashiCorp GPG key.
     apt_key:
