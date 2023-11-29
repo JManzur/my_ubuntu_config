@@ -33,20 +33,4 @@
 
   - name: Install Oh-My-Bash
     shell: |
-      bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
-    args:
-      creates: /home/jmanzur/.oh-my-bash
-  
-  - name: Add the HashiCorp GPG key.
-    apt_key:
-      url: https://apt.releases.hashicorp.com/gpg
-      state: present
-
-  - name: Add the official HashiCorp Linux repository.
-    ansible.builtin.apt_repository:
-      repo: deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main
-      state: present
-
-  - name: Update to add the repository, and install the Terraform CLI.
-    shell: apt-get update && sudo apt-get install terraform -y
-    register: terrafor_install
+      bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
