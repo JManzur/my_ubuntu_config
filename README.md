@@ -20,9 +20,15 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/JManzur/my_ubuntu_c
 
 This script will install the latest updates, git and ansible.
 
-## Deployment How-To:
+## Manual deployment How-To:
 
-Pull the repository and run it:
+Update the system and install git and ansible:
+
+```bash
+sudo apt update && sudo apt upgrade -y && sudo apt install git ansible -y
+```
+
+Execute the ansible-pull command:
 
 ```bash
 sudo ansible-pull -U https://github.com/JManzur/my_ubuntu_config.git
