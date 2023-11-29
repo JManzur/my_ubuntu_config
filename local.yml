@@ -2,6 +2,7 @@
 - hosts: localhost
   connection: local
   become: true
+  ansible_user: "jmanzur"
   pre_tasks:
   - name: Update and Upgrade
     apt:

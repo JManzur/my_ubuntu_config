@@ -34,6 +34,11 @@ check_if_installed () {
     fi
 }
 
+run_ansible_pull () {
+    echo -e "${GREEN}Running Ansible Pull${ENDCOLOR} \n"
+    sudo ansible-pull -U https://github.com/JManzur/my_ubuntu_config.git
+}
+
 #Actual installation procedure:
 if [[ $EUID -ne 0 ]]
     then
@@ -49,4 +54,5 @@ if [[ $EUID -ne 0 ]]
         progress_bar
         check_if_installed "git"
         check_if_installed "ansible"
+        run_ansible_pull
 fi
