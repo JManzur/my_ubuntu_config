@@ -2,6 +2,10 @@
 - hosts: localhost
   connection: local
   become: true
+  vars:
+    users:
+      - jmanzur
+      - root
   pre_tasks:
   - name: Update and Upgrade
     apt:
@@ -36,15 +40,9 @@
       path: "~/.oh-my-bash"
     register: oh_my_bash
 
-  - name: Install Oh My Bash for all users
-    vars:
-      users:
-        - jmanzur
-        - root
-    tasks:
-      - name: Install Oh My Bash for each user
-        become: yes
-        become_user: "{{ item }}"
-        shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
-        loop: "{{ users }}"
-        when: not oh_my_bash.stat.exists
+  - name: Install Oh My Bash for jmanzur
+    become: yes
+    become_user: "{{ item }}"
+    shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
+    loop: "{{ users }}"
+    when: not oh_my_bash.stat.exists

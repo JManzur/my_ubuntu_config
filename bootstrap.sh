@@ -63,12 +63,13 @@ if [[ $EUID -ne 0 ]]
         check_if_installed "git"
         check_if_installed "ansible"
         run_ansible_pull
+        echo ""
         read -p "Do you want to install QEMU Agent? (y/n): " -n 1 -r
         echo ""
         if [[ $REPLY =~ ^[Yy]$ ]]
             then
                 install_qemu_agent
             else
-                echo -e "${BLUE}INFO:${ENDCOLOR} QEMU Agent not installed"
+                echo -e "${BLUE}INFO:${ENDCOLOR} Skipping QEMU Agent installation"
         fi
 fi
