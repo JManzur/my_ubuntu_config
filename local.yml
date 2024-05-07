@@ -46,3 +46,13 @@
     shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
     loop: "{{ users }}"
     when: not oh_my_bash.stat.exists
+
+  - name: Set Oh My Bash theme
+    become: yes
+    become_user: "{{ item }}"
+    lineinfile:
+      path: ~/.bashrc
+      line: "OSH_THEME='90210'"
+      state: present
+    loop: "{{ users }}"
+    when: oh_my_bash.stat.exists
