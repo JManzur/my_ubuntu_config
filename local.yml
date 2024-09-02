@@ -47,12 +47,12 @@
     
   - name: Install Fuzzy Finder
     ansible.builtin.shell: |
-      command: git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+      git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
       ~/.fzf/install
 
   - name: Install kubectl
     ansible.builtin.shell: |
-      command: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
       chmod +x kubectl
       sudo mv kubectl /usr/local/bin/
 
@@ -60,13 +60,12 @@
     ansible.builtin.shell: |
       curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
       chmod 700 get_helm.sh
-      ./get_helm.sh
+      ./get_helm.sh && rm get_helm.sh
 
   - name: Install ArgoCD CLI
     ansible.builtin.shell: |
       curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-      sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
-      && rm argocd-linux-amd64
+      sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd && rm argocd-linux-amd64
   
   - name: Install Terraform
     ansible.builtin.shell: |
