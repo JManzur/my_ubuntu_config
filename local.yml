@@ -34,25 +34,57 @@
         - pass
         - gnupg2
         - silversearcher-ag
+        - zsh
+        - npm
+        - unzip
 
-  - name: Check if Oh My Bash is installed
-    stat:
-      path: "~/.oh-my-bash"
-    register: oh_my_bash
+  - name: Install AWS CLI
+    ansible.builtin.shell: |
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
+      sudo ./aws/install
+    
+  - name: Install Fuzzy Finder
+    ansible.builtin.shell: |
+      command: git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+      ~/.fzf/install
 
-  - name: Install Oh My Bash for jmanzur
-    become: yes
-    become_user: "{{ item }}"
-    shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
-    loop: "{{ users }}"
-    when: not oh_my_bash.stat.exists
+  - name: Install kubectl
+    ansible.builtin.shell: |
+      command: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      chmod +x kubectl
+      sudo mv kubectl /usr/local/bin/
 
-  - name: Set Oh My Bash theme
-    become: yes
-    become_user: "{{ item }}"
-    lineinfile:
-      path: ~/.bashrc
-      line: "OSH_THEME='90210'"
-      state: present
-    loop: "{{ users }}"
-    when: oh_my_bash.stat.exists
+  - name: Install Helm
+    ansible.builtin.shell: |
+      curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+      chmod 700 get_helm.sh
+      ./get_helm.sh
+
+  - name: Install ArgoCD CLI
+    ansible.builtin.shell: |
+      curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+      sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+      && rm argocd-linux-amd64
+  
+  - name: Install Terraform
+    ansible.builtin.shell: |
+      sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+      wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+      gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
+      echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+      sudo apt-get update && sudo apt-get install terraform
+
+  - name: Install Go
+    ansible.builtin.shell: |
+      GO_TAR="go1.23.0.linux-amd64.tar.gz"
+      sudo wget -qcO /usr/local/$GO_TAR https://go.dev/dl/$GO_TAR
+      sudo tar -C /usr/local -xzf /usr/local/$GO_TAR
+      sudo rm -rf /usr/local/$GO_TAR
+      export PATH=$PATH:/usr/local/go/bin
+
+  - name: Install eks-node-viewer
+    ansible.builtin.shell: |
+      go install github.com/awslabs/eks-node-viewer/cmd/eks-node-viewer@latest
+
+
