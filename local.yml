@@ -37,6 +37,7 @@
         - zsh
         - npm
         - unzip
+        - bat
 
   - name: Install AWS CLI
     ansible.builtin.shell: |
